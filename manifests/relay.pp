@@ -20,8 +20,12 @@ class postfix::relay (
   $smtp_tls_note_starttls_offer = undef,
   $smtp_tls_security_level = undef,
   $smtp_use_tls = undef,
+  $masquerade_exceptions = undef,
+  $relay_only = true,
 ) {
   include postfix
+
+  validate_bool($relay_only)
 
   postfix::config::maincfhelper { 'append_dot_mydomain': value => 'yes', }
 
@@ -52,6 +56,8 @@ class postfix::relay (
   postfix::config::maincfhelper { 'mailbox_size_limit': value => '0', }
 
   postfix::config::maincfhelper { 'masquerade_domains': value => $masquerade_domains, }
+
+  postfix::config::maincfhelper { 'masquerade_exceptions': value => $masquerade_exceptions, }
 
   postfix::config::maincfhelper { 'inet_interfaces': value => 'loopback-only', }
 }
