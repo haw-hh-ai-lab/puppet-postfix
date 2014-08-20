@@ -38,5 +38,7 @@ class postfix::relay (
 
   postfix::config::maincfhelper { 'masquerade_exceptions': value => $masquerade_exceptions, }
 
-  postfix::config::maincfhelper { 'inet_interfaces': value => 'loopback-only', }
+  if $relay_only == true {
+    postfix::config::maincfhelper { 'inet_interfaces': value => 'loopback-only', }
+  }
 }
