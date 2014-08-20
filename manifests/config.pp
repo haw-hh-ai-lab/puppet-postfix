@@ -138,6 +138,8 @@ class postfix::config (
 
   postfix::config::maincfhelper { 'smtpd_banner': value => $smtpd_banner }
 
+  postfix::config::maincfhelper { 'smtpd_client_restrictions': value => $smtpd_client_restrictions }
+
   postfix::config::maincfhelper { 'smtpd_data_restrictions': value => $smtpd_data_restrictions }
 
   postfix::config::maincfhelper { 'smtpd_delay_reject': value => $smtpd_delay_reject }
@@ -145,6 +147,8 @@ class postfix::config (
   postfix::config::maincfhelper { 'smtpd_helo_required': value => $smtpd_helo_required }
 
   postfix::config::maincfhelper { 'smtpd_recipient_restrictions': value => $smtpd_recipient_restrictions }
+
+  postfix::config::maincfhelper { 'smtpd_restriction_classes': value => $smtpd_restriction_classes }
 
   postfix::config::maincfhelper { 'smtpd_sasl_auth_enable': value => $smtpd_sasl_auth_enable }
 
@@ -154,9 +158,6 @@ class postfix::config (
 
   postfix::config::maincfhelper { 'smtpd_sender_restrictions': value => $smtpd_sender_restrictions }
 
-#  postfix::config::maincfhelper { '': value => $ }
-#smtpd_client_restrictions
-#smtpd_restriction_classes
   postfix::config::maincfhelper { 'smtpd_sender_login_maps': value => $smtpd_sender_login_maps }
 
   postfix::config::maincfhelper { 'smtpd_tls_auth_only': value => $smtpd_tls_auth_only }
