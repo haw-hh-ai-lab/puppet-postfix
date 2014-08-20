@@ -24,23 +24,28 @@ class postfix::config (
   $mydestination                        = undef,
   $myhostname                           = undef,
   $mynetworks                           = undef,
+  $mynetworks_style                     = undef,
   $myorigin                             = undef,
   $proxy_read_maps                      = undef,
   $local_recipient_maps                 = undef,
   $receive_override_options             = undef,
   $show_user_unknown_table_name         = undef,
   $smtpd_banner                         = undef,
+  $smtpd_client_restrictions            = undef,
   $smtpd_data_restrictions              = undef,
   $smtpd_delay_reject                   = undef,
   $smtpd_helo_required                  = undef,
   $smtpd_recipient_restrictions         = undef,
+  $smtpd_restriction_classes            = undef,
   $smtpd_sasl_auth_enable               = undef,
   $smtpd_sasl_local_domain              = undef,
   $smtpd_sasl_security_options          = undef,
   $smtpd_sender_restrictions            = undef,
   $smtpd_sasl_type                      = undef,
   $smtpd_sasl_path                      = undef,
+  $smtpd_sender_login_maps              = undef,
   $smtpd_tls_auth_only                  = undef,
+  $smtpd_tls_CAfile                     = undef,
   $smtpd_tls_cert_file                  = undef,
   $smtpd_tls_key_file                   = undef,
   $smtpd_tls_loglevel                   = undef,
@@ -49,6 +54,7 @@ class postfix::config (
   $smtpd_use_tls                        = undef,
   $smtp_sasl_security_options           = undef,
   $smtp_tls_CAfile                      = undef,
+  $smtp_tls_loglevel                    = undef,
   $smtp_tls_note_starttls_offer         = undef,
   $smtp_use_tls                         = undef,
   $soft_bounce                          = undef,
@@ -118,6 +124,8 @@ class postfix::config (
 
   postfix::config::maincfhelper { 'mynetworks': value => $mynetworks }
 
+  postfix::config::maincfhelper { 'mynetworks_style': value => $mynetworks_style }
+
   postfix::config::maincfhelper { 'myorigin': value => $myorigin }
 
   postfix::config::maincfhelper { 'proxy_read_maps': value => $proxy_read_maps }
@@ -146,7 +154,14 @@ class postfix::config (
 
   postfix::config::maincfhelper { 'smtpd_sender_restrictions': value => $smtpd_sender_restrictions }
 
+#  postfix::config::maincfhelper { '': value => $ }
+#smtpd_client_restrictions
+#smtpd_restriction_classes
+  postfix::config::maincfhelper { 'smtpd_sender_login_maps': value => $smtpd_sender_login_maps }
+
   postfix::config::maincfhelper { 'smtpd_tls_auth_only': value => $smtpd_tls_auth_only }
+
+  postfix::config::maincfhelper { 'smtpd_tls_CAfile': value => $smtpd_tls_CAfile }
 
   postfix::config::maincfhelper { 'smtpd_tls_cert_file': value => $smtpd_tls_cert_file }
 
@@ -163,6 +178,8 @@ class postfix::config (
   postfix::config::maincfhelper { 'smtp_sasl_security_options': value => $smtp_sasl_security_options }
 
   postfix::config::maincfhelper { 'smtp_tls_CAfile': value => $smtp_tls_CAfile }
+
+  postfix::config::maincfhelper { 'smtp_tls_loglevel': value => $smtp_tls_loglevel }
 
   postfix::config::maincfhelper { 'smtp_tls_note_starttls_offer': value => $smtp_tls_note_starttls_offer }
 
