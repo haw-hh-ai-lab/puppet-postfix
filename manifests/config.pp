@@ -32,7 +32,6 @@ class postfix::config (
   $local_recipient_maps                 = undef,
   $receive_override_options             = undef,
   $relayhost                            = undef,
-  $sender_hostname                      = undef,
   $show_user_unknown_table_name         = undef,
   $smtpd_banner                         = undef,
   $smtpd_client_restrictions            = undef,
@@ -147,8 +146,6 @@ class postfix::config (
   postfix::config::maincfhelper { 'receive_override_options': value => $receive_override_options }
 
   postfix::config::maincfhelper { 'relayhost': value => $relayhost, }
-
-  postfix::config::maincfhelper { 'sender_hostname': value => $sender_hostname, }
 
   postfix::config::maincfhelper { 'show_user_unknown_table_name': value => $show_user_unknown_table_name }
 
