@@ -20,6 +20,8 @@ class postfix::config (
   $import_environment                   = undef,
   $mailbox_size_limit                   = undef,
   $mail_spool_directory                 = undef,
+  $masquerade_domains                   = undef,
+  $masquerade_exceptions                = undef,
   $message_size_limit                   = undef,
   $mydestination                        = undef,
   $myhostname                           = undef,
@@ -29,6 +31,8 @@ class postfix::config (
   $proxy_read_maps                      = undef,
   $local_recipient_maps                 = undef,
   $receive_override_options             = undef,
+  $relayhost                            = undef,
+  $sender_hostname                      = undef,
   $show_user_unknown_table_name         = undef,
   $smtpd_banner                         = undef,
   $smtpd_client_restrictions            = undef,
@@ -82,6 +86,10 @@ class postfix::config (
 ) {
   include postfix
 
+  if defined(Class['::postfix::relay']) {
+    fail("classes postfix::relay and postfix::config are mutually exclusive")
+  }
+
   create_resources(postfix::config::mastercf, $mastercfs)
 
   postfix::config::maincfhelper { 'luser_relay': value => $luser_relay, }
@@ -116,6 +124,10 @@ class postfix::config (
 
   postfix::config::maincfhelper { 'mail_spool_directory': value => $mail_spool_directory }
 
+  postfix::config::maincfhelper { 'masquerade_domains': value => $masquerade_domains, }
+
+  postfix::config::maincfhelper { 'masquerade_exceptions': value => $masquerade_exceptions, }
+
   postfix::config::maincfhelper { 'message_size_limit': value => $message_size_limit }
 
   postfix::config::maincfhelper { 'mydestination': value => $mydestination }
@@ -133,6 +145,10 @@ class postfix::config (
   postfix::config::maincfhelper { 'local_recipient_maps': value => $local_recipient_maps }
 
   postfix::config::maincfhelper { 'receive_override_options': value => $receive_override_options }
+
+  postfix::config::maincfhelper { 'relayhost': value => $relayhost, }
+
+  postfix::config::maincfhelper { 'sender_hostname': value => $sender_hostname, }
 
   postfix::config::maincfhelper { 'show_user_unknown_table_name': value => $show_user_unknown_table_name }
 

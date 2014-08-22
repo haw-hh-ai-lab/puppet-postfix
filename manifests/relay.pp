@@ -14,11 +14,12 @@ class postfix::relay (
   $masquerade_domains = $::hostname,
   $sender_hostname = $::fqdn,
   $masquerade_exceptions = undef,
-  $relay_only = true,
 ) {
   include postfix
 
-  validate_bool($relay_only)
+  if defined(Class['::postfix::config']) {
+    fail("classes postfix::relay and postfix::config are mutually exclusive")
+  }
 
   postfix::config::maincfhelper { 'append_dot_mydomain': value => 'yes', }
 
@@ -38,7 +39,5 @@ class postfix::relay (
 
   postfix::config::maincfhelper { 'masquerade_exceptions': value => $masquerade_exceptions, }
 
-  if $relay_only == true {
-    postfix::config::maincfhelper { 'inet_interfaces': value => 'loopback-only', }
-  }
+  postfix::config::maincfhelper { 'inet_interfaces': value => 'loopback-only', }
 }
