@@ -21,7 +21,6 @@ class postfix::relay (
   $smtp_tls_note_starttls_offer = undef,
   $smtp_tls_security_level = undef,
   $smtp_use_tls = undef,
-  $masquerade_exceptions = undef,
 ) {
   include postfix
 
