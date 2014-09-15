@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe 'postfix::rule', :type => :class do
+describe 'postfix::rule', :type => :define do
   let(:facts) { {:operatingsystem => 'Debian', :operatingsystemrelease => '7.1'} }
+  let(:title) { 'a_new_rule' }
   let(:params) { {
-    :name          => 'a_new_rule',
     :rule          => 'the_data_to_set'
   } }
   it 'should have an augeas resource' do
