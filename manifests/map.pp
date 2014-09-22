@@ -48,7 +48,7 @@ define postfix::map (
       $ext = 'pag'
     }
     default         : {
-      fail("the type ${type} does not need to be pre-processed. Simply set as file")
+      fail("the type ${type} does not need to pre-processed. Simply set as file")
     }
 
   }
