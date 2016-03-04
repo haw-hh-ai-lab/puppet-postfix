@@ -41,7 +41,7 @@ class postfix::config (
   $smtpd_data_restrictions              = undef,
   $smtpd_delay_reject                   = undef,
   $smtpd_helo_required                  = undef,
-  $smtpd_relay_restrictions             = undef
+  $smtpd_relay_restrictions             = undef,
   $smtpd_recipient_restrictions         = undef,
   $smtpd_restriction_classes            = undef,
   $smtpd_sasl_auth_enable               = undef,
