@@ -41,6 +41,7 @@ class postfix::config (
   $smtpd_data_restrictions              = undef,
   $smtpd_delay_reject                   = undef,
   $smtpd_helo_required                  = undef,
+  $smtpd_relay_restrictions             = undef
   $smtpd_recipient_restrictions         = undef,
   $smtpd_restriction_classes            = undef,
   $smtpd_sasl_auth_enable               = undef,
@@ -163,6 +164,8 @@ class postfix::config (
   postfix::config::maincfhelper { 'smtpd_client_restrictions': value => $smtpd_client_restrictions }
 
   postfix::config::maincfhelper { 'smtpd_data_restrictions': value => $smtpd_data_restrictions }
+  
+  postfix::config::maincfhelper { 'smtpd_relay_restrictions': value => $smtpd_relay_restrictions }
 
   postfix::config::maincfhelper { 'smtpd_delay_reject': value => $smtpd_delay_reject }
 
