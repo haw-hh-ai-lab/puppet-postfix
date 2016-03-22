@@ -97,5 +97,6 @@ define postfix::map (
     refreshonly => true,
     creates     => "${name}.${ext}",
     notify      => Service['postfix'],
+    alias       => "postmap-update-${name}",
   }
 }
